@@ -8,16 +8,14 @@ import useResult from '../hooks/useResult'
 const searchScreen = ()=> {
     const [term,setTerm] = useState('') 
     const [searchApi,err,result] = useResult()
-    console.log(result)
+    // console.log(result)
     
     const filterPrice = (price) => {
         return result.filter(results => {
            return results.price === price 
         })
     }
-
     const image = {uri : 'https://www.wallpapertip.com/wmimgs/206-2061930_wallpaper-abstrak-keren.jpg'}
-
     return <View style = {style.background}>
     <ImageBackground source={image} resizeMode= 'cover' style = {style.image}> 
     <SearchBar 
@@ -27,9 +25,15 @@ const searchScreen = ()=> {
      />
         {err ? <Text>{err}</Text> : null}
     <ScrollView>
-         <ResultList title='Cost Effective' apiResult={filterPrice('$')} />
-        <ResultList title= 'Bit Pricer' apiResult={filterPrice('$$')} />
-        <ResultList title = 'Big Spander' apiResult={filterPrice('$$$')} />
+         <ResultList
+        title='Cost Effective'
+        apiResult={filterPrice('$')} />
+        <ResultList
+        title= 'Bit Pricer' 
+        apiResult={filterPrice('$$')} />
+        <ResultList 
+        title = 'Big Spander' 
+        apiResult={filterPrice('$$$')} />
     </ScrollView>
       </ImageBackground>
     </View>
